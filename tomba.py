@@ -1,2 +1,2 @@
-def find_locations(text):
-    return {}
+def get_locations(text):
+    return []
