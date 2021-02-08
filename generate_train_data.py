@@ -1,6 +1,7 @@
 import httpx
 from bs4 import BeautifulSoup
 import json
+import pathlib
 from pprint import pprint
 
 # TODO identifica o nome do estado no texto
@@ -8,19 +9,23 @@ from pprint import pprint
 
 states = json.load(open("data/states.json"))
 
+
 def get_states_wikipedia_pages():
-    response = httpx.get('https://pt.wikipedia.org/wiki/Lista_de_unidades_federativas_do_Brasil_por_popula%C3%A7%C3%A3o')
-    # TODO httpx.ConnectTimeout: _ssl.c:1106: The handshake operation timed out
+    response = httpx.get(
+        "https://pt.wikipedia.org/wiki/Lista_de_unidades_federativas_do_Brasil_por_popula%C3%A7%C3%A3o"
+    )
     if response.status_code != 200:
         raise Exception(f"Falha ao acessar a Wikipedia {response}")
 
     soup = BeautifulSoup(response.text, features="html.parser")
     rows = soup.select("table.wikitable tr td a")
     for row in rows:
-        title = row.get('title')
+        title = row.get("title")
         title = title.replace(" (estado)", "").replace(" (Brasil)", "")
         if states.get(title):
-            states[title]["wikipedia_url"] = f"https://pt.wikipedia.org{row.get('href')}"
+            states[title][
+                "wikipedia_url"
+            ] = f"https://pt.wikipedia.org{row.get('href')}"
     return states
 
 
@@ -31,23 +36,35 @@ def generate_state_train_data(state_wikipedia_url):
 
     soup = BeautifulSoup(response.text, features="html.parser")
     paragraphs = soup.select("div.mw-parser-output p")[:4]
-    return [
-        paragraph.text
-        for paragraph in paragraphs
-    ]
+    return [paragraph.text for paragraph in paragraphs]
+
+
+def generate_train_data_for_states(filepath):
+    states_with_paragraphs = json.load(open(filepath))
+    for state, data in states_with_paragraphs.items():
+        print(f"--------------------- {state}")
+        for paragraph in data["paragraphs"]:
+            state_len = len(state)
+            print(paragraph.find(state))
 
 
 if __name__ == "__main__":
-    # TODO checa se 'data/states_with_wikipedia_paragraphs.json' existe
-    # se não
-    wikipedia_pages = get_states_wikipedia_pages()
-    paragraphs_by_state = wikipedia_pages.copy()
-    for state, data in wikipedia_pages.items():
-        print(state, data)
-        paragraphs_by_state[state]["paragraphs"] = generate_state_train_data(data["wikipedia_url"])
+    # TODO transformar em uma CLI
 
-    with open('data/states_with_wikipedia_paragraphs.json', 'w') as f:
-        json.dump(paragraphs_by_state, f)
+    filepath = pathlib.Path("data/states_with_wikipedia_paragraphs.json")
+    if filepath.is_file():
+        # TODO gera dados no formato do spacy
+        generate_train_data_for_states(filepath)
+    else:
+        print("O arquivo não existe. Vamos fazer download de um novo.")
 
-    # se sim
-    # TODO gera dados no formato do spacy
+        wikipedia_pages = get_states_wikipedia_pages()
+        paragraphs_by_state = wikipedia_pages.copy()
+        for state, data in wikipedia_pages.items():
+            print(state, data)
+            paragraphs_by_state[state]["paragraphs"] = generate_state_train_data(
+                data["wikipedia_url"]
+            )
+
+        with open("data/states_with_wikipedia_paragraphs.json", "w") as f:
+            json.dump(paragraphs_by_state, f)
