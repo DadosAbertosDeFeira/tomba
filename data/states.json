@@ -1,29 +1,110 @@
 {
-    "Acre": {"sigla": "AC"},
-    "Alagoas": {"sigla": "AL"},
-    "Amapá": {"sigla": "AP"},
-    "Amazonas": {"sigla": "AM"},
-    "Bahia": {"sigla": "BA"},
-    "Ceará": {"sigla": "CE"},
-    "Distrito Federal": {"sigla": "DF"},
-    "Espírito Santo": {"sigla": "ES"},
-    "Goiás": {"sigla": "GO"},
-    "Maranhão": {"sigla": "MA"},
-    "Mato Grosso": {"sigla": "MT"},
-    "Mato Grosso do Sul": {"sigla": "MS"},
-    "Minas Gerais": {"sigla": "MG"},
-    "Pará": {"sigla": "PA"},
-    "Paraíba": {"sigla": "PB"},
-    "Paraná": {"sigla": "PR"},
-    "Pernambuco": {"sigla": "PE"},
-    "Piauí": {"sigla": "PI"},
-    "Rio de Janeiro": {"sigla": "RJ"},
-    "Rio Grande do Norte": {"sigla": "RN"},
-    "Rio Grande do Sul": {"sigla": "RS"},
-    "Rondônia": {"sigla": "RO"},
-    "Roraima": {"sigla": "RR"},
-    "Santa Catarina": {"sigla": "SC"},
-    "São Paulo": {"sigla": "SP"},
-    "Sergipe": {"sigla": "SE"},
-    "Tocantins": {"sigla": "TO"}
+    "Acre": {
+        "sigla": "AC",
+        "wikipedia_url": "https://pt.wikipedia.org/wiki/Acre"
+    },
+    "Alagoas": {
+        "sigla": "AL",
+        "wikipedia_url": "https://pt.wikipedia.org/wiki/Alagoas"
+    },
+    "Amap\u00e1": {
+        "sigla": "AP",
+        "wikipedia_url": "https://pt.wikipedia.org/wiki/Amap%C3%A1"
+    },
+    "Amazonas": {
+        "sigla": "AM",
+        "wikipedia_url": "https://pt.wikipedia.org/wiki/Amazonas"
+    },
+    "Bahia": {
+        "sigla": "BA",
+        "wikipedia_url": "https://pt.wikipedia.org/wiki/Bahia"
+    },
+    "Cear\u00e1": {
+        "sigla": "CE",
+        "wikipedia_url": "https://pt.wikipedia.org/wiki/Cear%C3%A1"
+    },
+    "Distrito Federal": {
+        "sigla": "DF",
+        "wikipedia_url": "https://pt.wikipedia.org/wiki/Distrito_Federal_(Brasil)"
+    },
+    "Esp\u00edrito Santo": {
+        "sigla": "ES",
+        "wikipedia_url": "https://pt.wikipedia.org/wiki/Esp%C3%ADrito_Santo_(estado)"
+    },
+    "Goi\u00e1s": {
+        "sigla": "GO",
+        "wikipedia_url": "https://pt.wikipedia.org/wiki/Goi%C3%A1s"
+    },
+    "Maranh\u00e3o": {
+        "sigla": "MA",
+        "wikipedia_url": "https://pt.wikipedia.org/wiki/Maranh%C3%A3o"
+    },
+    "Mato Grosso": {
+        "sigla": "MT",
+        "wikipedia_url": "https://pt.wikipedia.org/wiki/Mato_Grosso"
+    },
+    "Mato Grosso do Sul": {
+        "sigla": "MS",
+        "wikipedia_url": "https://pt.wikipedia.org/wiki/Mato_Grosso_do_Sul"
+    },
+    "Minas Gerais": {
+        "sigla": "MG",
+        "wikipedia_url": "https://pt.wikipedia.org/wiki/Minas_Gerais"
+    },
+    "Par\u00e1": {
+        "sigla": "PA",
+        "wikipedia_url": "https://pt.wikipedia.org/wiki/Par%C3%A1"
+    },
+    "Para\u00edba": {
+        "sigla": "PB",
+        "wikipedia_url": "https://pt.wikipedia.org/wiki/Para%C3%ADba"
+    },
+    "Paran\u00e1": {
+        "sigla": "PR",
+        "wikipedia_url": "https://pt.wikipedia.org/wiki/Paran%C3%A1"
+    },
+    "Pernambuco": {
+        "sigla": "PE",
+        "wikipedia_url": "https://pt.wikipedia.org/wiki/Pernambuco"
+    },
+    "Piau\u00ed": {
+        "sigla": "PI",
+        "wikipedia_url": "https://pt.wikipedia.org/wiki/Piau%C3%AD"
+    },
+    "Rio de Janeiro": {
+        "sigla": "RJ",
+        "wikipedia_url": "https://pt.wikipedia.org/wiki/Rio_de_Janeiro_(estado)"
+    },
+    "Rio Grande do Norte": {
+        "sigla": "RN",
+        "wikipedia_url": "https://pt.wikipedia.org/wiki/Rio_Grande_do_Norte"
+    },
+    "Rio Grande do Sul": {
+        "sigla": "RS",
+        "wikipedia_url": "https://pt.wikipedia.org/wiki/Rio_Grande_do_Sul"
+    },
+    "Rond\u00f4nia": {
+        "sigla": "RO",
+        "wikipedia_url": "https://pt.wikipedia.org/wiki/Rond%C3%B4nia"
+    },
+    "Roraima": {
+        "sigla": "RR",
+        "wikipedia_url": "https://pt.wikipedia.org/wiki/Roraima"
+    },
+    "Santa Catarina": {
+        "sigla": "SC",
+        "wikipedia_url": "https://pt.wikipedia.org/wiki/Santa_Catarina"
+    },
+    "S\u00e3o Paulo": {
+        "sigla": "SP",
+        "wikipedia_url": "https://pt.wikipedia.org/wiki/S%C3%A3o_Paulo_(estado)"
+    },
+    "Sergipe": {
+        "sigla": "SE",
+        "wikipedia_url": "https://pt.wikipedia.org/wiki/Sergipe"
+    },
+    "Tocantins": {
+        "sigla": "TO",
+        "wikipedia_url": "https://pt.wikipedia.org/wiki/Tocantins"
+    }
 }
