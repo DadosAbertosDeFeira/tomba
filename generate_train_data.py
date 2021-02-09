@@ -41,17 +41,34 @@ def generate_state_train_data(state_wikipedia_url):
 
 def generate_train_data_for_states(filepath):
     states_with_paragraphs = json.load(open(filepath))
+    for paragraph in states_with_paragraphs:
+        # TODO find state in paragraph
+        for state in states:
+            pass
+
+
+def generate_label_data_for_states(filepath):
+    labels = []
+    states_with_paragraphs = json.load(open(filepath))
     for state, data in states_with_paragraphs.items():
-        print(f"--------------------- {state}")
-        for paragraph in data["paragraphs"]:
-            state_len = len(state)
-            print(paragraph.find(state))
+        labels.append({
+            "label": "STATE",
+            "pattern": state,
+            "id": state.lower()
+        })
+        labels.append({
+            "label": "STATE",
+            "pattern": data["sigla"],
+            "id": state.lower()
+        })
+    return labels
 
 
 if __name__ == "__main__":
     # TODO transformar em uma CLI
 
-    filepath = pathlib.Path("data/states_with_wikipedia_paragraphs.json")
+    """
+    filepath = pathlib.Path("data/states_wikipedia_paragraphs.json")
     if filepath.is_file():
         # TODO gera dados no formato do spacy
         generate_train_data_for_states(filepath)
@@ -66,5 +83,9 @@ if __name__ == "__main__":
                 data["wikipedia_url"]
             )
 
-        with open("data/states_with_wikipedia_paragraphs.json", "w") as f:
+        with open("data/states_wikipedia_paragraphs.json", "w") as f:
             json.dump(paragraphs_by_state, f)
+    """
+    states_label = generate_label_data_for_states("data/states.json")
+    with open("data/states_label.json", "w") as f:
+        json.dump(states_label, f)
