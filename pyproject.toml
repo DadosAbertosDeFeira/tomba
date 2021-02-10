@@ -7,9 +7,11 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-spacy = "^2.3.5"
+spacy = ">=3.0.0"
 jupyter = "^1.0.0"
 pandas = "^1.2.1"
+setuptools = "^53.0.0"
+wheel = "^0.36.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.1"
