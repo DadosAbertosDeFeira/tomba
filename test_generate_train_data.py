@@ -13,8 +13,6 @@ def test_generate_train_data_for_states():
         "end": 3
     }
 
-    {"label": "STATE", "pattern": "Apple", "id": "apple"}
-
     assert train_data[0] == expected_train_data
 
 
