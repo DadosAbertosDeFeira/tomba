@@ -1,4 +1,4 @@
-from generate_train_data import generate_train_data_for_states, generate_label_data_for_states
+from tomba.generate_train_data import generate_train_data_for_states, generate_label_data_for_states
 import pathlib
 
 

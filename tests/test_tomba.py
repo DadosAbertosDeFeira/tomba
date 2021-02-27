@@ -1,4 +1,4 @@
-from tomba import get_locations
+from tomba.tomba import get_locations
 import pytest
 
 
