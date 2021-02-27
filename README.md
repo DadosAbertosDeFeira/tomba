@@ -1,5 +1,7 @@
 # tomba
 
+[![Built with spaCy](https://img.shields.io/badge/made%20with%20❤%20and-spaCy-09a3d5.svg)](https://spacy.io)
+
 Identifique endereços, bairros e outras localizações brasileiras em um texto. 🏘
 
 Não sabe o que é o [Tomba](https://pt.wikipedia.org/wiki/Tomba_(Feira_de_Santana))?
