@@ -20,8 +20,8 @@ import pytest
             "p\u00f3stumas,[44][47] a capital recebeu o nome de Rio Branco e dois "
             "munic\u00edpios receberam o nome de Assis Brasil e Pl\u00e1cido de Castro.",
             [
-                {"type": "state", "start": 92, "end": 123},  # Acre
-                {"type": "state", "start": 92, "end": 123},  # AC
+                {"type": "state", "start": 15, "end": 19},  # Acre
+                {"type": "state", "start": 590, "end": 592},  # AC
             ]
         ),
         (
@@ -33,10 +33,10 @@ import pytest
             " \u00e9 o Pal\u00e1cio Rep\u00fablica dos Palmares. O atual governador "
             "\u00e9 Renan Filho (MDB).",
             [
-                {"type": "state", "start": 92, "end": 123},  # Alagoas
-                {"type": "state", "start": 92, "end": 123},  # Pernambuco
-                {"type": "state", "start": 92, "end": 123},  # Sergipe
-                {"type": "state", "start": 92, "end": 123},  # Bahia
+                {"type": "state", "start": 0, "end": 7},  # Alagoas
+                {"type": "state", "start": 113, "end": 123},  # Pernambuco
+                {"type": "state", "start": 134, "end": 141},  # Sergipe
+                {"type": "state", "start": 147, "end": 152},  # Bahia
             ]
         )
     ]
