@@ -1,8 +1,7 @@
 import httpx
 from bs4 import BeautifulSoup
 import json
-import pathlib
-from pprint import pprint
+import re
 
 # TODO identifica o nome do estado no texto
 # TODO gera o arquivo amigável para os dados de treino do spacy
@@ -41,26 +40,29 @@ def generate_state_train_data(state_wikipedia_url):
 
 def generate_train_data_for_states(filepath):
     states_with_paragraphs = json.load(open(filepath))
+    labeled_data = []
     for paragraph in states_with_paragraphs:
-        # TODO find state in paragraph
+        # naive approach
         for state in states:
-            pass
+            for match in re.finditer(state, paragraph):
+                labeled_data.append(
+                    {
+                        "label": "STATE",
+                        "start": match.start(),
+                        "end": match.end(),
+                        "string": match.string,
+                    }
+                )
+
+    return labeled_data
 
 
 def generate_label_data_for_states(filepath):
     labels = []
     states_with_paragraphs = json.load(open(filepath))
     for state, data in states_with_paragraphs.items():
-        labels.append({
-            "label": "STATE",
-            "pattern": state,
-            "id": state.lower()
-        })
-        labels.append({
-            "label": "STATE",
-            "pattern": data["sigla"],
-            "id": state.lower()
-        })
+        labels.append({"label": "STATE", "pattern": state, "id": state.lower()})
+        labels.append({"label": "STATE", "pattern": data["sigla"], "id": state.lower()})
     return labels
 
 
