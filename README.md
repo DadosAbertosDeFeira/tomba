@@ -1,6 +1,6 @@
 # tomba
 
-[![Built with spaCy](https://img.shields.io/badge/made%20with%20❤%20and-spaCy-09a3d5.svg)](https://spacy.io)
+[![Built with spaCy](https://img.shields.io/badge/made%20with%20❤%20and-spaCy-09a3d5.svg)](https://spacy.io) [![CI](https://github.com/DadosAbertosDeFeira/tomba/actions/workflows/ci.yml/badge.svg)](https://github.com/DadosAbertosDeFeira/tomba/actions/workflows/ci.yml)
 
 Identifique endereços, bairros e outras localizações brasileiras em um texto. 🏘
 
