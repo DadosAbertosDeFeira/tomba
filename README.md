@@ -1,6 +1,8 @@
 # tomba
 
-[![Built with spaCy](https://img.shields.io/badge/made%20with%20❤%20and-spaCy-09a3d5.svg)](https://spacy.io) [![CI](https://github.com/DadosAbertosDeFeira/tomba/actions/workflows/ci.yml/badge.svg)](https://github.com/DadosAbertosDeFeira/tomba/actions/workflows/ci.yml)
+[![Built with spaCy](https://img.shields.io/badge/made%20with%20❤%20and-spaCy-09a3d5.svg)](https://spacy.io)
+[![CI](https://github.com/DadosAbertosDeFeira/tomba/actions/workflows/ci.yml/badge.svg)](https://github.com/DadosAbertosDeFeira/tomba/actions/workflows/ci.yml)
+[![PyPI version](https://badge.fury.io/py/tomba.svg)](https://badge.fury.io/py/tomba)
 
 Identifique endereços, bairros e outras localizações brasileiras em um texto. 🏘
 
@@ -8,7 +10,7 @@ Não sabe o que é o [Tomba](https://pt.wikipedia.org/wiki/Tomba_(Feira_de_Santa
 
 ---
 
-Essa biblioteca é experimental e está no seu estágio inicial de desenvolvimento.
+:warning:️ Essa biblioteca é experimental e está no seu estágio inicial de desenvolvimento.
 
 Objetivo:
 
