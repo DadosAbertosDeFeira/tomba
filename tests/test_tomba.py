@@ -46,6 +46,31 @@ def test_identify_states(text, expected_locations):
     assert get_locations(text) == expected_locations
 
 
+@pytest.mark.parametrize("text,expected_locations", [
+    (
+        "Conceder  a  renovação  da LICENÇA  AMBIENTAL  DE  OPERAÇÃO -LAO, "
+        "válida  pelo  prazo  de  05 (cinco)  anos  à  empresa BioÓleo –Industrial "
+        "e  Comercio  S/A com sede na Avenida Deputado Luís Eduardo Magalhães, S/N,"
+        "Limoeiro, Feira De Santana –BA, CEP: 44.097-324.",
+        [
+            {"type": "ZIPCODE", "start": 251, "end": 261},  # 44.097-324
+            {"type": "state", "start": 242, "end": 244},  # BA
+        ]
+    ),
+    (
+        "A Prefeitura Municipal de Feira de Santana, pessoa jurídica de direito público, "
+        "com sede à Av. Senhor dos Passos, 980 - Centro, Feira de Santana - BA, "
+        "CEP: 44002-024, inscrita no CNPJ sob o nº 15.043.574/0001-51",
+        [
+            {"type": "ZIPCODE", "start": 156, "end": 165},  # 44.097-324
+            {"type": "state", "start": 147, "end": 149},  # BA
+        ]
+    )
+])
+def test_identify_zipcodes(text, expected_locations):
+    assert get_locations(text) == expected_locations
+
+
 @pytest.mark.skip
 @pytest.mark.parametrize(
     "text,expected_locations",
