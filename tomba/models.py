@@ -1,6 +1,6 @@
 import json
-from spacy.lang.pt import Portuguese
 
+from spacy.lang.pt import Portuguese
 
 nlp = Portuguese()
 

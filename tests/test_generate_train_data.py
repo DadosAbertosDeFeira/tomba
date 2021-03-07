@@ -1,12 +1,13 @@
-from tomba.generate_train_data import (
-    generate_train_data_for_states,
-    generate_label_data_for_states,
-)
 import pathlib
 
+from tomba.generate_train_data import (
+    generate_label_data_for_states,
+    generate_train_data_for_states,
+)
 
 root_dir = pathlib.Path(__file__).parent.parent
 state_dir = f"{root_dir}/data/states"
+
 
 def test_generate_train_data_for_states():
     first_found_paragraph = (

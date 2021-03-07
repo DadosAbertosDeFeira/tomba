@@ -1,5 +1,6 @@
-from tomba.tomba import get_locations
 import pytest
+
+from tomba.tomba import get_locations
 
 
 @pytest.mark.parametrize(
@@ -22,7 +23,7 @@ import pytest
             [
                 {"type": "state", "start": 15, "end": 19},  # Acre
                 {"type": "state", "start": 590, "end": 592},  # AC
-            ]
+            ],
         ),
         (
             "Alagoas \u00e9 uma das 27 unidades federativas do Brasil. Est\u00e1 "
@@ -37,9 +38,9 @@ import pytest
                 {"type": "state", "start": 113, "end": 123},  # Pernambuco
                 {"type": "state", "start": 134, "end": 141},  # Sergipe
                 {"type": "state", "start": 147, "end": 152},  # Bahia
-            ]
-        )
-    ]
+            ],
+        ),
+    ],
 )
 def test_identify_states(text, expected_locations):
     assert get_locations(text) == expected_locations
@@ -60,11 +61,23 @@ def test_identify_states(text, expected_locations):
             [
                 {"type": "city", "start": 113, "end": 118},  # Feira de Santana
                 {"type": "country", "start": 113, "end": 118},  # Brasil
-                {"type": "coordinates", "start": 92, "end": 123},  # 12°16′00″ S, 38°58′00″ O
+                {
+                    "type": "coordinates",
+                    "start": 92,
+                    "end": 123,
+                },  # 12°16′00″ S, 38°58′00″ O
                 {"type": "city", "start": 113, "end": 118},  # Feira de Santana
-                {"type": "coordinates", "start": 92, "end": 123},  # -12.2666700°, -38.9666700°
+                {
+                    "type": "coordinates",
+                    "start": 92,
+                    "end": 123,
+                },  # -12.2666700°, -38.9666700°
                 {"type": "city", "start": 113, "end": 118},  # Feira de Santana
-                {"type": "coordinates", "start": 92, "end": 123},  # 12°16.0002′ S, 38°58.0002′ O
+                {
+                    "type": "coordinates",
+                    "start": 92,
+                    "end": 123,
+                },  # 12°16.0002′ S, 38°58.0002′ O
             ],
         ),
         (
