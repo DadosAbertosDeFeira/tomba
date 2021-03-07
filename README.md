@@ -16,7 +16,10 @@ Objetivo:
 import tomba
 
 
-tomba.get_locations("Contratação de empresa de engenharia para executar obras de pavimentação localizados no CEP 44100-000, no bairro Tomba.")
+tomba.get_locations(
+    "Contratação de empresa de engenharia para executar obras "
+    "de pavimentação localizados no CEP 44100-000, no bairro Tomba."
+)
 ```
 
 Saída:
@@ -38,4 +41,16 @@ Para configurar o [spacy](https://spacy.io) em português, execute:
 
 ```
 poetry run python -m spacy download pt_core_news_sm
+```
+
+Para rodar os testes:
+
+```
+poetry run pytest
+```
+
+Para gerar um novo modelo:
+
+```
+poetry run python tomba/models.py
 ```
