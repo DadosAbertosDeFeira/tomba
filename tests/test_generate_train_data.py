@@ -5,6 +5,9 @@ from tomba.generate_train_data import (
 import pathlib
 
 
+root_dir = pathlib.Path(__file__).parent.parent
+state_dir = f"{root_dir}/data/states"
+
 def test_generate_train_data_for_states():
     first_found_paragraph = (
         "Acre \u00e9 uma das 27 unidades federativas do Brasil.[9] "
@@ -25,7 +28,7 @@ def test_generate_train_data_for_states():
         "Madureira e Tarauac\u00e1.[14]\n"
     )
 
-    filepath = pathlib.Path("data/states_wikipedia_paragraphs.json")
+    filepath = pathlib.Path(f"{state_dir}/states_wikipedia_paragraphs.json")
 
     train_data = generate_train_data_for_states(filepath)
 
@@ -47,7 +50,7 @@ def test_generate_train_data_for_states():
 
 
 def test_generate_label_data_for_sates():
-    filepath = pathlib.Path("data/states.json")
+    filepath = pathlib.Path(f"{state_dir}/states.json")
 
     train_data = generate_label_data_for_states(filepath)
 

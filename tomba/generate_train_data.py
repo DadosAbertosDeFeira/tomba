@@ -1,12 +1,13 @@
+import argparse
 import httpx
 from bs4 import BeautifulSoup
 import json
+import pathlib
 import re
 
-# TODO identifica o nome do estado no texto
-# TODO gera o arquivo amigável para os dados de treino do spacy
 
-states = json.load(open("data/states.json"))
+root_dir = pathlib.Path(__file__).parent.parent
+states = json.load(open(f"{root_dir}/data/states/states.json"))
 
 
 def get_states_wikipedia_pages():
@@ -28,13 +29,13 @@ def get_states_wikipedia_pages():
     return states
 
 
-def generate_state_train_data(state_wikipedia_url):
+def download_paragraphs_from_wikipedia_page(state_wikipedia_url):
     response = httpx.get(state_wikipedia_url)
     if response.status_code != 200:
         raise Exception(f"Falha ao acessar a Wikipedia {response}")
 
     soup = BeautifulSoup(response.text, features="html.parser")
-    paragraphs = soup.select("div.mw-parser-output p")[:4]
+    paragraphs = soup.select("div.mw-parser-output p")
     return [paragraph.text for paragraph in paragraphs]
 
 
@@ -67,27 +68,49 @@ def generate_label_data_for_states(filepath):
 
 
 if __name__ == "__main__":
-    # TODO transformar em uma CLI
+    actions = ["entity_label", "download_wikipedia", "generate_train_data"]
+    parser = argparse.ArgumentParser(description='Gera dados de treino.')
+    parser.add_argument('entity', help='Qual o tipo de dado?')
+    parser.add_argument('action', help=f'O que você deseja fazer? e.g. {actions}')
+    parser.add_argument('--args', metavar='N', nargs='+', help='Argumentos')
 
-    """
-    filepath = pathlib.Path("data/states_wikipedia_paragraphs.json")
-    if filepath.is_file():
-        # TODO gera dados no formato do spacy
-        generate_train_data_for_states(filepath)
-    else:
-        print("O arquivo não existe. Vamos fazer download de um novo.")
+    args = parser.parse_args()
+    entity = args.entity
+    action = args.action
+    args = args.args
 
-        wikipedia_pages = get_states_wikipedia_pages()
-        paragraphs_by_state = wikipedia_pages.copy()
-        for state, data in wikipedia_pages.items():
-            print(state, data)
-            paragraphs_by_state[state]["paragraphs"] = generate_state_train_data(
-                data["wikipedia_url"]
-            )
+    if action not in actions:
+        raise Exception(f"Ação inválida. Opções: {actions}")
 
-        with open("data/states_wikipedia_paragraphs.json", "w") as f:
-            json.dump(paragraphs_by_state, f)
-    """
-    states_label = generate_label_data_for_states("data/states.json")
-    with open("data/states_label.json", "w") as f:
-        json.dump(states_label, f)
+    if entity == "estado":
+        if action == "entity_label":
+            # gera labels para estados
+            if not args:
+                json_file = f"{root_dir}/data/states/states.json"
+            else:
+                json_file = args[0]
+            states_label = generate_label_data_for_states(json_file)
+            with open(f"{root_dir}/data/states/states_label.json", "w") as f:
+                json.dump(states_label, f, ensure_ascii=True, indent=4)
+        elif action == "download_wikipedia":
+            # baixa paragrafos sobre estados do wikipedia
+            wikipedia_pages = get_states_wikipedia_pages()
+            paragraphs_by_state = wikipedia_pages.copy()
+            all_paragraphs = []
+            for state, data in wikipedia_pages.items():
+                print(state, data)
+                paragraphs_by_state[state]["paragraphs"] = download_paragraphs_from_wikipedia_page(
+                    data["wikipedia_url"]
+                )
+                all_paragraphs.extend(paragraphs_by_state[state]["paragraphs"])
+            with open(f"{root_dir}/data/states/wikipedia_paragraphs_by_state.json", "w") as f:
+                json.dump(paragraphs_by_state, f, ensure_ascii=True, indent=4)
+            with open(f"{root_dir}/data/states/states_wikipedia_paragraphs.json", "w") as f:
+                json.dump(all_paragraphs, f, ensure_ascii=True, indent=4)
+        elif action == "generate_train_data":
+            # gera dados de treino no formato do spacy
+            filepath = pathlib.Path(f"{root_dir}/data/states/states_wikipedia_paragraphs.json")
+            if filepath.is_file():
+                labeled_data = generate_train_data_for_states(filepath)
+                with open(f"{root_dir}/data/states/states_labeled_data.json", "w") as f:
+                    json.dump(labeled_data, f, ensure_ascii=True, indent=4)
