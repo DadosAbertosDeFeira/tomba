@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tomba - Dados Abertos de Feira</title>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <!-- Bulma Version 0.9.0-->
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css"/>
+    <style type="text/css">
+        html,
+        body {
+            font-family: 'Open Sans';
+        }
+
+        img {
+            padding: 5px;
+        }
+    </style>
+    <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/brython@3.9.1/brython.min.js">
+    </script>
+</head>
+
+<body onload="brython()">
+<section class="hero is-fullheight is-default is-bold">
+    <div class="hero-head">
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="../">
+                        <img src="images/logo-azul-com-fundo-transparente.png" alt="Logo">
+                    </a>
+                    <span class="navbar-burger burger" data-target="navbarMenu">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                </div>
+                <div id="navbarMenu" class="navbar-menu">
+                    <div class="navbar-end">
+                        <div class="tabs is-right">
+                            <ul>
+                                <li class="is-active"><a>Início</a></li>
+                                <li><a href="https://github.com/DadosAbertosDeFeira/tomba">Código Fonte</a></li>
+                                <li><a href="https://medium.com/@dadosabertosdefeira">Blog</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="hero-body">
+        <div class="container">
+            <div class=" has-text-centered">
+                <h1 class="title is-2">
+                    Diga "Oi" ao Tomba!
+                </h1>
+                <h2 class="subtitle is-4">
+                    A nossa biblioteca para identificação de localizações em português.
+                </h2>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="columns is-vcentered">
+                <div class="column is-5">
+                    <textarea id="text" class="textarea is-info"
+                              placeholder="Digite aqui seu texto com alguma localização."></textarea>
+                </div>
+                <button id="identify" class="button">Identificar</button>
+                <div class="column is-6 is-offset-1">
+                    <div id="resultados">
+                        <p class="has-text-left"></p>
+                    </div>
+                </div>
+            </div>
+
+            <script type="text/python">
+                from browser import document, alert
+
+                def echo(event):
+                    alert(f"Você digitou: {document['text'].value}")
+
+                document["identify"].bind("click", echo)
+
+            </script>
+
+            <br>
+            <br>
+            <br>
+            <div>
+                <p>
+                    ATENÇÃO: Essa biblioteca está em estágio inicial de desenvolvimento.
+                </p>
+                <br>
+                <br>
+                <p>
+                    Atualmente identificamos:
+                </p>
+                <ul>
+                    <li>
+                        <label class="checkbox">
+                            <input type="checkbox">
+                            Endereços
+                        </label>
+                    </li>
+                    <li>
+                        <label class="checkbox">
+                            <input type="checkbox">
+                            Bairros
+                        </label>
+                    </li>
+                    <li>
+                        <label class="checkbox">
+                            <input type="checkbox" checked disabled>
+                            CEPs
+                        </label>
+                    </li>
+
+                    <li>
+                        <label class="checkbox">
+                            <input type="checkbox">
+                            Cidades
+                        </label>
+                    </li>
+                    <li>
+                        <label class="checkbox">
+                            <input type="checkbox" checked disabled>
+                            Estados
+                        </label>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="hero-foot">
+        <div class="container">
+            <div class="tabs is-centered">
+                <ul>
+                    <li><a href="https://www.dadosabertosdefeira.com.br">www.dadosabertosdefeira.com.br</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="js/bulma.js"></script>
+</body>
+
+</html>
