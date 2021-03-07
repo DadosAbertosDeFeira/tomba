@@ -21,8 +21,8 @@ from tomba.tomba import get_locations
             "p\u00f3stumas,[44][47] a capital recebeu o nome de Rio Branco e dois "
             "munic\u00edpios receberam o nome de Assis Brasil e Pl\u00e1cido de Castro.",
             [
-                {"type": "state", "start": 15, "end": 19},  # Acre
-                {"type": "state", "start": 590, "end": 592},  # AC
+                {"type": "STATE", "start": 15, "end": 19},  # Acre
+                {"type": "STATE", "start": 590, "end": 592},  # AC
             ],
         ),
         (
@@ -34,10 +34,10 @@ from tomba.tomba import get_locations
             " \u00e9 o Pal\u00e1cio Rep\u00fablica dos Palmares. O atual governador "
             "\u00e9 Renan Filho (MDB).",
             [
-                {"type": "state", "start": 0, "end": 7},  # Alagoas
-                {"type": "state", "start": 113, "end": 123},  # Pernambuco
-                {"type": "state", "start": 134, "end": 141},  # Sergipe
-                {"type": "state", "start": 147, "end": 152},  # Bahia
+                {"type": "STATE", "start": 0, "end": 7},  # Alagoas
+                {"type": "STATE", "start": 113, "end": 123},  # Pernambuco
+                {"type": "STATE", "start": 134, "end": 141},  # Sergipe
+                {"type": "STATE", "start": 147, "end": 152},  # Bahia
             ],
         ),
     ],
@@ -56,7 +56,7 @@ def test_identify_states(text, expected_locations):
             "Limoeiro, Feira De Santana –BA, CEP: 44.097-324.",
             [
                 {"type": "ZIPCODE", "start": 251, "end": 261},  # 44.097-324
-                {"type": "state", "start": 242, "end": 244},  # BA
+                {"type": "STATE", "start": 242, "end": 244},  # BA
             ],
         ),
         (
@@ -66,7 +66,7 @@ def test_identify_states(text, expected_locations):
             "CEP: 44002-024, inscrita no CNPJ sob o nº 15.043.574/0001-51",
             [
                 {"type": "ZIPCODE", "start": 156, "end": 165},  # 44.097-324
-                {"type": "state", "start": 147, "end": 149},  # BA
+                {"type": "STATE", "start": 147, "end": 149},  # BA
             ],
         ),
     ],
@@ -131,7 +131,7 @@ def test_identify_zipcodes(text, expected_locations):
                 {"type": "neighborhood", "start": 92, "end": 123},  # Centro
                 {"type": "zipcode", "start": 113, "end": 118},  # 44100-000
                 {"type": "city", "start": 113, "end": 118},  # Feira de Santana
-                {"type": "state", "start": 113, "end": 118},  # Bahia
+                {"type": "STATE", "start": 113, "end": 118},  # Bahia
             ],
         ),
         (

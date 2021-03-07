@@ -1,7 +1,10 @@
+import pathlib
+
 import spacy
 from spacy.matcher import Matcher
 
-nlp = spacy.load("models/pt_core_news_sm_addresses")
+root_dir = pathlib.Path(__file__).parent.parent
+nlp = spacy.load(f"{root_dir}/models/pt_core_news_sm_addresses")
 
 # TODO verificar melhor maneira de identificar abreviações
 
@@ -34,7 +37,7 @@ def get_locations(text):
         if ent.label_ in LOCATION_LABELS:
             found.append(
                 {
-                    "type": ent.label_.lower(),  # TODO check how is the default
+                    "type": ent.label_,
                     "start": ent.start_char,
                     "end": ent.end_char,
                 }
