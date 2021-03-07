@@ -1,9 +1,15 @@
 [tool.poetry]
 name = "tomba"
-version = "0.1.0"
+version = "0.1.0a"
 description = "Identifique localizações brasileiras em um texto 🏘"
 authors = ["Dados Abertos de Feira <dadosabertosdefeira+gh@gmail.com>"]
 license = "MIT"
+readme = "README.md"
+packages = [
+    {include = "tomba"},
+    {include = "models"},
+]
+include = ["models/"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
