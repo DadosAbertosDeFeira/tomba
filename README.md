@@ -33,6 +33,17 @@ Saída:
 ]
 ```
 
+Suportando atualmente:
+
+Endereços
+
+- [ ] Endereços
+- [ ] Bairros
+- [x] CEPs
+- [ ] Coordenadas
+- [ ] Cidades
+- [x] Estados
+
 ## Desenvolvimento
 
 Utilizamos o [poetry](https://python-poetry.org/) para empacotamento e gerenciamento das dependências.
