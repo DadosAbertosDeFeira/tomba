@@ -17,9 +17,11 @@ jobs:
           poetry-version: 1.1.4
       - name: Install Dependencies
         run: poetry install
+      - name: Generate model
+        run: poetry run python tomba/models.py
+      - name: Run Tests
+        run: poetry run pytest
       - name: Lint
         run: |
           poetry run black --check .
           poetry run flake8 .
-      - name: Run Tests
-        run: poetry run pytest
