@@ -9,12 +9,8 @@ LOCATION_LABELS = ["STATE", "ZIPCODE"]
 
 # adiciona identificação de ceps
 matcher = Matcher(nlp.vocab)
-pattern_with_dot = [  # 44.050-024
-    {"SHAPE": "dd."}, {"SHAPE": "ddd-ddd"}
-]
-pattern_without_dot = [  # 44050-024
-    {"SHAPE": "dddd-ddd"}
-]
+pattern_with_dot = [{"SHAPE": "dd."}, {"SHAPE": "ddd-ddd"}]  # 44.050-024
+pattern_without_dot = [{"SHAPE": "dddd-ddd"}]  # 44050-024
 matcher.add("ZIPCODE", [pattern_with_dot, pattern_without_dot])
 
 
@@ -30,7 +26,7 @@ def get_locations(text):
             {
                 "type": string_id,
                 "start": span.start_char,
-                "end":span.end_char,
+                "end": span.end_char,
             }
         )
 
