@@ -5,7 +5,9 @@ from spacy.lang.pt import Portuguese
 
 nlp = Portuguese()
 
-ruler = nlp.add_pipe("entity_ruler")
+ruler = nlp.add_pipe(
+    "entity_ruler"
+)  # FIXME dessa forma o ruler atual é sobrescrito - não queremos isso
 patterns = json.load(open("data/states/states_label.json"))
 
 ruler.add_patterns(patterns)
