@@ -1,13 +1,15 @@
 import argparse
 import json
-import pathlib
 import re
+from pathlib import Path
 
 import httpx
+import pandas as pd
+from adapters import to_jsonl
 from bs4 import BeautifulSoup
 
-root_dir = pathlib.Path(__file__).parent.parent
-states = json.load(open(f"{root_dir}/data/states/states.json"))
+root_dir = Path(__file__).parent.parent
+states = json.load(open(f"{root_dir}/data/collected/states/states.json"))
 
 
 def get_states_wikipedia_pages():
@@ -68,6 +70,10 @@ def generate_label_data_for_states(filepath):
     return labels
 
 
+def generate_label_data_for_cities(cities):
+    return [{"label": "CITY", "pattern": city} for city in cities]
+
+
 if __name__ == "__main__":
     actions = ["entity_label", "download_wikipedia", "generate_train_data"]
     parser = argparse.ArgumentParser(description="Gera dados de treino.")
@@ -76,8 +82,8 @@ if __name__ == "__main__":
     parser.add_argument("--args", metavar="N", nargs="+", help="Argumentos")
 
     args = parser.parse_args()
-    entity = args.entity
-    action = args.action
+    entity = args.entity.lower()
+    action = args.action.lower()
     args = args.args
 
     if action not in actions:
@@ -114,10 +120,19 @@ if __name__ == "__main__":
                 json.dump(all_paragraphs, f, ensure_ascii=True, indent=4)
         elif action == "generate_train_data":
             # gera dados de treino no formato do spacy
-            filepath = pathlib.Path(
-                f"{root_dir}/data/states/states_wikipedia_paragraphs.json"
-            )
+            filepath = Path(f"{root_dir}/data/states/states_wikipedia_paragraphs.json")
             if filepath.is_file():
                 labeled_data = generate_train_data_for_states(filepath)
                 with open(f"{root_dir}/data/states/states_labeled_data.json", "w") as f:
                     json.dump(labeled_data, f, ensure_ascii=True, indent=4)
+    elif entity == "cidade":
+        if action == "entity_label":
+            cities = pd.read_csv(
+                f"{root_dir}/data/original/cities/"
+                f"Lista_Municípios_com_IBGE_Brasil_Versao_CSV.csv",
+                sep=";",
+                encoding="latin-1",
+            )
+            pattern_list = generate_label_data_for_cities(cities["Município"])
+            destination = Path(f"{root_dir}/data/jsonl/cities/")
+            to_jsonl(pattern_list, destination, "cities3.jsonl")

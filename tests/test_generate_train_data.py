@@ -1,12 +1,10 @@
 import pathlib
 
-from tomba.generate_train_data import (
-    generate_label_data_for_states,
-    generate_train_data_for_states,
-)
+from tomba.generate_train_data import (generate_label_data_for_states,
+                                       generate_train_data_for_states)
 
 root_dir = pathlib.Path(__file__).parent.parent
-state_dir = f"{root_dir}/data/states"
+state_dir = f"{root_dir}/data/collected/states"
 
 
 def test_generate_train_data_for_states():
