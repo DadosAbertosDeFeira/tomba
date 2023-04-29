@@ -5,7 +5,7 @@ from pathlib import Path
 
 import httpx
 import pandas as pd
-from adapters import to_jsonl
+from tomba.adapters import to_jsonl
 from bs4 import BeautifulSoup
 
 root_dir = Path(__file__).parent.parent
