@@ -8,7 +8,7 @@ nlp = spacy.load(f"{root_dir}/models/pt_core_news_sm_addresses")
 
 # TODO verificar melhor maneira de identificar abreviações
 
-LOCATION_LABELS = ["STATE", "ZIPCODE"]
+LOCATION_LABELS = ["CITY", "STATE", "ZIPCODE"]
 
 # adiciona identificação de ceps
 matcher = Matcher(nlp.vocab)

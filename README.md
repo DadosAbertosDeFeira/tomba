@@ -41,7 +41,7 @@ Endereços
 - [ ] Bairros
 - [x] CEPs
 - [ ] Coordenadas
-- [ ] Cidades
+- [x] Cidades
 - [x] Estados
 
 ## Desenvolvimento
